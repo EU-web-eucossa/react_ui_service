@@ -1,8 +1,7 @@
-# A basic template for react developer with ts
-- Typescript
-- ReduxJs/toolkit
-- axios
-- Sass
-- Material UI
-- Material Icons
-- Recharts
+# Cart UI
+Pages
+- Product page
+- Cart capability(persistent store)
+- Cart page
+- Checkout page
+- Order page
