@@ -19,7 +19,7 @@ const userSlice = createSlice({
       state.profile = {
         ...action.payload,
       };
-    },
+    },  
     logoutUser: (state) => {
       state["profile"] = {
         role: "",

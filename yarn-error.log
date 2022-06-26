@@ -1,0 +1,94 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\pcplus\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+
+PATH: 
+  C:\Users\pcplus\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\pcplus\bin;C:\Python310\Scripts;C:\Python310;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Program Files\dotnet;C:\Program Files\CodeBlocks\MinGW\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Users\pcplus\Documents\mongosh-1.4.2-win32-x64\mongosh-1.4.2-win32-x64\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\pcplus\AppData\Local\Programs\Python\Python39\Scripts;C:\Users\pcplus\AppData\Local\Programs\Python\Python39;C:\Users\pcplus\AppData\Local\Microsoft\WindowsApps;C:\Users\pcplus\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\pcplus\.dotnet\tools;C:\ProgramData;C:\PHP;C:\Program Files\MongoDB\Server\5.0\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.1.3\bin;C:\Program Files\PostgreSQL\14\bin;C:\Program Files\PostgreSQL\bin;C:\SQlite3;C:\Program Files\JetBrains\PyCharm Community Edition 2021.2.3\bin;C:\Users\pcplus\AppData\Local\GitHubDesktop\bin;C:\Users\pcplus\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  16.15.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.8.4.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (C:\Users\pcplus\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141510:19)
+      at Object.onceWrapper (node:events:641:28)
+      at ClientRequest.emit (node:events:527:28)
+      at TLSSocket.emitRequestTimeout (node:_http_client:771:9)
+      at Object.onceWrapper (node:events:641:28)
+      at TLSSocket.emit (node:events:539:35)
+      at TLSSocket.Socket._onTimeout (node:net:516:8)
+      at listOnTimeout (node:internal/timers:559:17)
+      at processTimers (node:internal/timers:502:7)
+
+npm manifest: 
+  {
+    "name": "web-ui",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "@emotion/react": "^11.9.0",
+      "@emotion/styled": "^11.8.1",
+      "@mui/icons-material": "^5.8.2",
+      "@mui/material": "^5.8.2",
+      "@mui/styled-engine-sc": "^5.8.0",
+      "@mui/x-data-grid": "^5.12.0",
+      "@reduxjs/toolkit": "^1.8.2",
+      "@testing-library/jest-dom": "^5.14.1",
+      "@testing-library/react": "^13.0.0",
+      "@testing-library/user-event": "^13.2.1",
+      "@types/jest": "^27.0.1",
+      "@types/node": "^16.7.13",
+      "@types/react": "^18.0.0",
+      "@types/react-dom": "^18.0.0",
+      "axios": "^0.27.2",
+      "react": "^18.1.0",
+      "react-dom": "^18.1.0",
+      "react-redux": "^8.0.2",
+      "react-router-dom": "^6.3.0",
+      "react-scripts": "5.0.1",
+      "redux": "^4.2.0",
+      "redux-persist": "^6.0.0",
+      "sass": "^1.52.2",
+      "styled-components": "^5.3.5",
+      "typescript": "^4.4.2",
+      "web-vitals": "^2.1.0"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ]
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "devDependencies": {
+      "@types/react-router-dom": "^5.3.3"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
