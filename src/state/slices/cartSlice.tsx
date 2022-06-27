@@ -1,67 +1,87 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IProductEntity } from "../interface";
 
-export type DataItem = {
-  totalAmount: number,
-  quantity: number,
-  data: [{
-    id:number,
-    img: string,
-    price: number,
-    title:string
-  }]
-} 
-type DataItems = {
-  items: DataItem[],
-  totalAmount: number,
-  quantity:number,
-}
-const initialState: DataItems = {
-    items:[],
-    quantity: 0,
-    totalAmount: 0
- }
+export type ProductType = {
+  totalAmount: number;
+  quantity: number;
+} & Partial<IProductEntity>;
+type CartStateType = {
+  items: ProductType[];
+  totalAmount: number;
+  quantity: number;
+};
+const initialState: CartStateType = {
+  items: [],
+  quantity: 0,
+  totalAmount: 0,
+};
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    getCartTotal: (state) => {
-      let { quantity, totalAmount } = state.items.reduce(
-        (cartTotal, cartItem) => {
-          const { price, quantity } = cartItem;
-          const itemTotal = price * quantity;
-          cartTotal.quantity += itemTotal;
-          cartTotal.totalAmount += quantity;
-          return cartTotal;
-        },
-        { quantity: 0, totalAmount: 0 }
+    addProductToCart: (
+      state: CartStateType,
+      action: PayloadAction<ProductType>
+    ) => {
+      state.items.find((product) => product._id === action.payload._id)
+        ? state.items.map((prod) =>
+            prod._id === action.payload._id
+              ? {
+                  ...prod,
+                  quantity: (prod.quantity += 1),
+
+                  totalAmount: prod.price * prod.quantity,
+                }
+              : prod
+          )
+        : state.items.push(action.payload);
+      state.quantity = state.items.length;
+      state.totalAmount = state.items.reduce(
+        (previous, current) => previous + current.totalAmount,
+        0
       );
-      state.quantity = parseInt(quantity.toFixed(2));
-      state.totalAmount = totalAmount;
     },
-    addToCart: (state, action: PayloadAction<DataItem>) => {
-      state.items=state.items.push((item)=>item.id === action.payload.id)
+    removeFromCart: (
+      state: CartStateType,
+      action: PayloadAction<{ _id: string }>
+    ) => {
+      state.items = state.items.filter(
+        (item) => item._id !== action.payload._id
+      );
+      state.quantity = state.items.length;
+      state.totalAmount = state.items.reduce(
+        (previous, current) => previous + current.totalAmount,
+        0
+      );
     },
-    remove: (state, action: PayloadAction<{ id: number }>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload.id);
-    }, 
-    increase: (state , action: PayloadAction<{quantity: number }>) => {
-      state.items = state.items.map((item) => {
-        if (item.id === action.payload.id) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-        return item;
-      });
+    clearCart: (state: CartStateType) => {
+      state = initialState;
     },
-    decrease: (state, action:PayloadAction<{quantity:number}>) => {
-      state.items = state.items.map((item) => {
-          if (item.id === action.payload.id) {
-            return { ...item, quantity: item.quantity - 1 };
-          }
-          return item;
-        })
-        .filter((item) => item.quantity !== 0);
+    reduceCartItemQuantity: (
+      state: CartStateType,
+      action: PayloadAction<{ _id: string }>
+    ) => {
+      state.items = state.items.map((prod) =>
+        prod._id === action.payload._id
+          ? {
+              ...prod,
+              quantity: (prod.quantity -= 1),
+              totalAmount: prod.quantity * prod.price,
+            }
+          : prod
+      );
+      state.quantity = state.items.length;
+      state.totalAmount = state.items.reduce(
+        (previous, current) => previous + current.totalAmount,
+        0
+      );
     },
   },
 });
-export const { AddToCart,getCartTotal,increase,remove,decrease } = cartSlice.actions;
+export const {
+  addProductToCart,
+  removeFromCart,
+  reduceCartItemQuantity,
+  clearCart,
+} = cartSlice.actions;
 export default cartSlice.reducer;
