@@ -40,7 +40,7 @@ const CartItem = (props: ProductType) => {
             <span>1</span>
             <Button
               onClick={() =>
-                dispatch(addProductToCart({ quantity: props.quantity}))
+                dispatch(addProductToCart({ quantity: props.quantity }))
               }
             >
               +
