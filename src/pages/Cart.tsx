@@ -5,6 +5,7 @@ import { useAppSelector } from "state/hooks";
 //import {ProductType} from "../state/slices/cartSlice";
 
 function Cart() {
+  document.title = "Shipment cart page"
   const { items, totalAmount } = useAppSelector(
     (state) => state.root.cart
   );

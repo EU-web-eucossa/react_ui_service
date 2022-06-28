@@ -1,8 +1,7 @@
-import "./App.css";
-import Footer from "./components/Footer";
-import Pages from "./pages/Pages";
+import Footer from "components/Footer";
+import Pages from "pages/Pages";
 import { HashRouter } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "components/Navbar";
 
 function App() {
   return (
