@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useAppDispatch, useAppSelector } from "state/hooks";
 import { loginUser, logoutUser } from "state/slices/userSlice";
 
@@ -34,7 +34,7 @@ const UserState = () => {
   };
   return (
     <div>
-      <h1>Sample persistent user State</h1>
+      {/* <h1>Sample persistent user State</h1> */}
       {isAuthenticated
         ? `Current user is ${isAuthenticated} and the name is ${username} Role is ${role}`
         : "You are currently logged out and browsing in Anonymous mode"}
