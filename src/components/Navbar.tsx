@@ -17,13 +17,15 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 function Navbar() {
   const {totalAmount,quantity}=useAppSelector(state=>state.root.cart)
   return (
-    <div className="header">
+    <div style={{position:"sticky",top:0}}>
       <CssBaseline/>
-      <AppBar sx={{position:"fixed",top:0,zIndex:1000}}>
+      <AppBar >
         <Toolbar >
-          <Typography variant="h6" color="inherit" noWrap>
-            WEB2 ONLINE SHOP
+          <Link to={"/"} color="white" style={{textDecoration:"none"}}>
+          <Typography variant="h6" color="#ffffff" noWrap>
+           Shipment homepage
           </Typography>
+          </Link>
            <Stack spacing={4} direction="row" justifyContent={"flex-end"} sx={{ color: 'action.active',flex:"1",alignItems:"center" }}>
            {quantity>=1&&(<Typography sx={{fontWeight:"bold",color:"#ffffff"}}>Total: $ {totalAmount.toFixed(2)}</Typography>)}
             <Link to='/cart'>
