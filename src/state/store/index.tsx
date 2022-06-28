@@ -11,22 +11,25 @@ import {
 } from 'redux-persist';
 import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage';
-import userReducer from './../slices/userSlice';
+import userReducer from 'state/slices/userSlice';
+import cartReducer from 'state/slices/cartSlice';
+import productsReducer from 'state/slices/productsSlice';
 
 const persistConfig = {
-  key: 'sample-redux',
+  key: 'eucossa-product-service-ui',
   version: 1,
   storage
 };
 
 const rootReducer = persistReducer(
   persistConfig,
-  combineReducers({ user: userReducer })
+  combineReducers({ user: userReducer,cart:cartReducer })
 );
 
 const store = configureStore({
   reducer: {
     root: rootReducer,
+    products:productsReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

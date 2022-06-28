@@ -1,10 +1,12 @@
 
-import Products from '../components/Products';
+import Products from 'components/Products';
 import styles from '../styles/Home.module.css';
+import React from 'react'
 
 import {Container,Box,Stack,Typography,Button} from '@mui/material'
 
 function Home() {
+  
   return (
     <div className={styles.home}>
       <Box marginTop="5px"

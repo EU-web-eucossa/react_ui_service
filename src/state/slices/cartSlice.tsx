@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IProductEntity } from "../interface";
+import { IProductEntity } from "../types";
 
 export type ProductType = {
   totalAmount: number;
@@ -23,18 +23,19 @@ const cartSlice = createSlice({
       state: CartStateType,
       action: PayloadAction<ProductType>
     ) => {
-      state.items.find((product) => product._id === action.payload._id)
+      state.items = state.items.find(
+        (prod) => prod._id === action.payload._id
+      )
         ? state.items.map((prod) =>
-            prod._id === action.payload._id
-              ? {
-                  ...prod,
-                  quantity: (prod.quantity += 1),
-
-                  totalAmount: prod.price * prod.quantity,
-                }
-              : prod
-          )
-        : state.items.push(action.payload);
+          prod._id === action.payload._id
+            ? {
+              ...prod,
+              quantity: prod.quantity += 1,
+              totalAmount: ((prod.price as any as number) * prod.quantity)
+            }
+            : prod
+        )
+        : [...state.items, { ...action.payload, totalAmount: ((action.payload.price as any as number) * action.payload.quantity) }];
       state.quantity = state.items.length;
       state.totalAmount = state.items.reduce(
         (previous, current) => previous + current.totalAmount,
@@ -64,10 +65,10 @@ const cartSlice = createSlice({
       state.items = state.items.map((prod) =>
         prod._id === action.payload._id
           ? {
-              ...prod,
-              quantity: (prod.quantity -= 1),
-              totalAmount: prod.quantity * prod.price,
-            }
+            ...prod,
+            quantity: (prod.quantity -= 1),
+            totalAmount: prod.price! * prod.quantity!,
+          }
           : prod
       );
       state.quantity = state.items.length;

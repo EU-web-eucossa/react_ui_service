@@ -4,30 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: 'KSH.90.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: 'KSH.3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: 'KSH.6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: 'KSH.140.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
+import { useAppSelector } from 'state/hooks';
 
 const addresses = ['1 MAMBOLEO', 'PARTELS', 'KISUMU-EAST', '40100', 'KENYA'];
 const payments = [
@@ -38,6 +15,7 @@ const payments = [
 ];
 
 export default function Review() {
+  const {items:products,totalAmount:cartPrice}=useAppSelector(state=>state.root.cart)
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -46,15 +24,15 @@ export default function Review() {
       <List disablePadding>
         {products.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+            <ListItemText primary={product.name} secondary={product.description} />
+            <Typography variant="body2" sx={{width:"10ch",textAlign:"right"}}>$ {product.price}</Typography>
           </ListItem>
         ))}
 
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            KSH.34.06
+            $ {cartPrice.toFixed(2)}
           </Typography>
         </ListItem>
       </List>

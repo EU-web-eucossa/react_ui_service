@@ -1,5 +1,5 @@
 
-import Checkout from './Checkout'
+import Checkout from 'components/Checkout'
 
 function Order() {
   return (
