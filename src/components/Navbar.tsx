@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useAppSelector } from 'state/hooks';
 //import {useSelector } from 'react-redux';
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -14,40 +15,21 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   },
 }));
 function Navbar() {
-  
+  const {totalAmount,quantity}=useAppSelector(state=>state.root.cart)
   return (
     <div className="header">
       <CssBaseline/>
-      <AppBar position="relative">
+      <AppBar sx={{position:"fixed",top:0,zIndex:1000}}>
         <Toolbar >
           <Typography variant="h6" color="inherit" noWrap>
             WEB2 ONLINE SHOP
           </Typography>
-           <Stack spacing={4} direction="row" sx={{ color: 'action.active' }}>
-            {/* <Box  display="flex" alignItems="center"justifyContent="center" position="relative">
-              <TextField
-              sx={{
-                input:{
-                  fontWeight:"600",
-                  border:"none"
-                  
-                },
-                width:{lg:"400px",xs:"50px"},
-                backgroundColor:"#fff"
-                
-              }}
-                placeholder="Search product"
-                type="text"
-               />
-               <Button variant="contained" sx={{
-                backgroundColor:"#ff2625",
-                color:"#fff",
-                height:"50px"
-               }}>Search</Button>
-            </Box> */}
+           <Stack spacing={4} direction="row" justifyContent={"flex-end"} sx={{ color: 'action.active',flex:"1",alignItems:"center" }}>
+           {quantity>=1&&(<Typography sx={{fontWeight:"bold",color:"#ffffff"}}>Total: $ {totalAmount.toFixed(2)}</Typography>)}
             <Link to='/cart'>
                <IconButton aria-label="cart">
-              <StyledBadge badgeContent={0} color="secondary"showZero>
+              <StyledBadge badgeContent={quantity
+              } color="secondary" showZero>
                <ShoppingCartIcon />
               </StyledBadge>
             </IconButton>

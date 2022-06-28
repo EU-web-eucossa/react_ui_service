@@ -4,23 +4,19 @@ import Box from "@mui/material/Box";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Rating from "@mui/material/Rating";
-import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
-//import { PayloadAction } from "@reduxjs/toolkit";
-//import { addProductToCart,ProductType } from '../state/slices/cartSlice';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import data from "../products";
-//import { useAppDispatch } from "state/hooks"
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-//import { IProductEntity } from "state/interface";
+import { useAppDispatch, useAppSelector } from "state/hooks"
+import {  createTheme,  ThemeProvider } from "@mui/material/styles";
+import { addProductToCart } from "state/slices/cartSlice";
 
 
 const theme = createTheme();
 export default function Products(){
   
-  
+  const {products} = useAppSelector(state=>state.products)
+  const dispatch = useAppDispatch()
   return (
     <ThemeProvider theme={theme}>
       <main>
@@ -52,36 +48,33 @@ export default function Products(){
               dolorem debitis quia quasi sit quibusdam!
             </Typography>
           </Container>
-          <Container sx={{ py: 8 }} maxWidth="md">
+          <Container sx={{ py: 8 }} maxWidth="lg">
             <Grid container spacing={4}>
-              {data.map((item) => (
-                <Grid item key={item._id} xs={12} sm={6} md={4}>
+              {products.map((product) => (
+                <Grid item key={product._id} xs={12} sm={6} lg={4} sx={{boxShadow:" 0 0 5rem -.2rem #00000"}}>
                   <Card
                     sx={{
                       height: "100%",
                       display: "flex",
                       flexDirection: "column",
+                      flexBasis:"18rem",
+                      flexGrow:1,
+                      flexShrink:0
                     }}
                   >
-                    <CardMedia component="image">
-                      <img src={item.url} alt="" />
+                    <CardMedia component="image" sx={{height:"20rem"}}>
+                      <img src={product.url} alt="" style={{objectFit:"contain",width:"100%",height:"100%"}}/>
                     </CardMedia>
                     <CardContent sx={{ flexGrow: 1 }}>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {item.name}
+                      <Typography variant="h5" component="h3" sx={{fontWeight:"medium",textAlign:"left"}}>
+                        {product.name}
                       </Typography>
-                      <Typography variant="h5" paragraph>{item.description}</Typography>
-                      <Typography variant="h5">KSh:{item.price}</Typography>
-                      <Stack spacing={1}>
-                        <Rating
-                          name="size-small"
-                          defaultValue={2}
-                          size="small"
-                        />
-                      </Stack>
+                      <Typography variant="h5" sx={{fontWeight:"bold",textAlign:"left"}} >$ {product.price.toFixed(2)}</Typography>
                     </CardContent>
                     <CardActions>
-                      <Button >ADD TO CART</Button>
+                      <Button variant="contained" color="primary" fullWidth onClick={e=>{
+                        dispatch(addProductToCart({...product,totalAmount:1}))
+                      }}>ADD TO CART</Button>
                     </CardActions>
                   </Card>
                 </Grid>

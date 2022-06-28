@@ -1,5 +1,5 @@
-import { IProductEntity } from './state/interface';
-const data: IProductEntity[] = [
+import { IProductEntity } from '../state/types';
+export const products: IProductEntity[] = [
 
     {
         _id: "62b908cc77529c598bcca25b",
@@ -72,55 +72,3 @@ const data: IProductEntity[] = [
     
     }
 ];
-export default data;
-// const data1:IProductEntity[] = [
-//     {
-//         id: 1,
-//         title: 'Laptop Hp ',
-//         price: 38000,
-//         quantity:1,
-//         img: '/images/2.jpg'
-
-//     },
-//     {
-//         id: 2,
-//         title: 'Laptop Hp ',
-//         price: 38000,
-//        quantity: 1,
-//         img: '/images/1.jpg'
-
-//     },
-//     {
-//         id: 3,
-//         title: 'Laptop Hp ',
-//         price: 38000,
-//        quantity: 1,
-//         img: '/images/3.jpg'
-
-//     },
-//     {
-//         id: 4,
-//         title: 'Laptop Hp ',
-//         price: 38000,
-//        quantity: 1,
-//         img: '/images/4.jpg'
-
-//     },
-//     {
-//         id: 5,
-//         title: 'Laptop Hp ',
-//         price: 38000,
-//        quantity: 1,
-//         img: '/images/4.jpg'
-
-//     },
-//     {
-//         id: 6,
-//         title: 'Laptop Hp ',
-//         price: 38000,
-//        quantity: 1,
-//         img: '/images/4.jpg'
-
-//     }
-// ];
-// export default data;

@@ -6,10 +6,10 @@ import {
   addProductToCart,
   removeFromCart,
   reduceCartItemQuantity,
-} from "../state/slices/cartSlice";
+} from "state/slices/cartSlice";
 import { DeleteOutlined } from "@mui/icons-material";
 
-const CartItem = (props: ProductType) => {
+const CartItem = ({_id,...props}: ProductType) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -22,25 +22,26 @@ const CartItem = (props: ProductType) => {
         />
         <Card>
           <Typography>{props.name}</Typography>
-          <Typography>{props.price}</Typography>
+          <Typography>Sub total: {props.price}*{props.quantity} = $ {props.totalAmount.toFixed(2)}</Typography>
 
           <CardActions>
             <Button
-              onClick={() => dispatch(removeFromCart({ _id: props._id }))}
+              onClick={() => dispatch(removeFromCart({ _id:_id! }))}
             >
               <DeleteOutlined />
             </Button>
             <Button
               onClick={() =>
-                dispatch(reduceCartItemQuantity({ _id: props._id }))
+                dispatch(reduceCartItemQuantity({ _id: _id! }))
               }
+              {...props.quantity>1?{disabled:false}:{disabled:true}}
             >
               -
             </Button>
-            <span>1</span>
+            <span>{props.quantity}</span>
             <Button
               onClick={() =>
-                dispatch(addProductToCart({ quantity: props.quantity }))
+                dispatch(addProductToCart({...props,_id,quantity:1}))
               }
             >
               +
