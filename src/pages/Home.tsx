@@ -6,7 +6,7 @@ import React from 'react'
 import {Container,Box,Stack,Typography,Button} from '@mui/material'
 
 function Home() {
-  
+  document.title = "Shipment homepage"
   return (
     <div className={styles.home}>
       <Box marginTop="5px"
