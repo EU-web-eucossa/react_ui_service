@@ -1,25 +1,36 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProductEntity } from "state/types";
-import { ProductType } from "./cartSlice";
-import {products} from 'data/products'
 
 type ProductStateType = {
+  loading: boolean
+  error: any
   products: IProductEntity[]
 };
 const initialState: ProductStateType = {
- products:[...products]
+  error: null
+  , loading: false,
+  products: []
 };
 
 const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    loadProducts: (state, action: PayloadAction<ProductType>) => {
-     
-    },  
-    
+    loadProductsStart: (state) => {
+      state.loading = true
+    },
+    loadProductsSuccess: (state, action: PayloadAction<IProductEntity[]>) => {
+      state.error = null
+      state.loading = false
+      state.products = [...action.payload]
+    },
+    loadProductsError: (state) => {
+      state.loading = false
+      state.error = true
+    }
+
   },
 });
 
-export const { loadProducts } = productsSlice.actions;
+export const { loadProductsError, loadProductsStart, loadProductsSuccess } = productsSlice.actions;
 export default productsSlice.reducer;
