@@ -22,7 +22,6 @@ function Home() {
           }
         })
         const products = response.data.data
-        console.log(products);
         
         dispatch(loadProductsSuccess(products))
 
