@@ -16,7 +16,7 @@ function Home() {
     const fetchProducts = async () => {
       try {
         dispatch(loadProductsStart())
-        const response = await publicAxios.post('/api/v1/products', {}, {
+        const response = await publicAxios.get('/api/v1/products', {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -27,7 +27,6 @@ function Home() {
         dispatch(loadProductsSuccess(products))
 
       } catch (error: any) {
-        console.log(error.response);
         dispatch(loadProductsError())
 
       }

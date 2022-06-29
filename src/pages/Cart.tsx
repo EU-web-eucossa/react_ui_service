@@ -30,7 +30,7 @@ function Cart() {
            <Box sx={{padding:4}}>
            <h4 style={{ marginRight: "40px", display: "flex" }}>
             Total:
-            <span>{totalAmount.toFixed(2)}</span>
+            <span>{totalAmount}</span>
              </h4>
             <Link to="/order" style={{textDecoration:"none",color:"#ffffff"}}>
             <Button style={{ backgroundColor: "orange" }}>ORDER NOW</Button>

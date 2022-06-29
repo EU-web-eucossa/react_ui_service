@@ -2,7 +2,7 @@ export type IProductEntity ={
   _id: string;
   name: string;
   price: number;
-  url: string;
+  image: any;
   description: string;
   quantity:number;
   

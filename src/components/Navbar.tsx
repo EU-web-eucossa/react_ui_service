@@ -17,7 +17,7 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 function Navbar() {
   const {totalAmount,quantity}=useAppSelector(state=>state.root.cart)
   return (
-    <div style={{position:"sticky",top:0}}>
+    <div style={{position:"sticky",top:0,zIndex:'1020'}}>
       <CssBaseline/>
       <AppBar >
         <Toolbar >
