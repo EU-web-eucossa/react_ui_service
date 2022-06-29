@@ -17,12 +17,12 @@ const CartItem = ({_id,...props}: ProductType) => {
       <Box>
         <img
           style={{ width: "100px", height: "100px" }}
-          src={props.url}
+          src={props.image.url}
           alt="name"
         />
         <Card>
           <Typography>{props.name}</Typography>
-          <Typography>Sub total: {props.price}*{props.quantity} = $ {props.totalAmount.toFixed(2)}</Typography>
+          <Typography>Sub total: {props.price?.toFixed(2)}*{props.quantity} = $ {props.totalAmount.toFixed(2)}</Typography>
 
           <CardActions>
             <Button
