@@ -18,7 +18,6 @@ export default function Products() {
 
   const { products, loading } = useAppSelector(state => state.products)
   const dispatch = useAppDispatch()
-  console.log(products);
 
   return (
     <ThemeProvider theme={theme}>
