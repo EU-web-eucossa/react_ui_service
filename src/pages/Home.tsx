@@ -5,7 +5,7 @@ import React from 'react'
 
 import { Container, Box, Stack, Typography, Button } from '@mui/material'
 import { useAppDispatch } from 'state/hooks';
-import { publicAxios } from 'api';
+import { productsAxios } from 'api';
 import { loadProductsError, loadProductsStart, loadProductsSuccess } from 'state/slices/productsSlice';
 
 function Home() {
@@ -13,16 +13,36 @@ function Home() {
   const dispatch = useAppDispatch()
 
   React.useEffect(() => {
+    // const fetchUsers = async () => {
+    //   try {
+    //     const response = await usersAxios.get('/forinda82@gmail.com', {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         'Access-Control-Allow-Origin' :'*'
+    //       }
+    //     })
+    //     const user = response
+    //     console.log(user);
+        
+
+    //     dispatch(loginUser(user.data))
+
+    //   } catch (error: any) {
+    //     console.log(error.response);
+
+
+    //   }
+    // }
     const fetchProducts = async () => {
       try {
         dispatch(loadProductsStart())
-        const response = await publicAxios.get('/api/v1/products', {
+        const response = await productsAxios.get('/api/v1/products', {
           headers: {
             'Content-Type': 'application/json'
           }
         })
         const products = response.data.data
-        
+
         dispatch(loadProductsSuccess(products))
 
       } catch (error: any) {
@@ -30,7 +50,9 @@ function Home() {
 
       }
     }
-    fetchProducts()
+    Promise.all([fetchProducts()
+    ])
+
   }, [dispatch])
   return (
     <div className={styles.home}>

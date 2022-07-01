@@ -1,15 +1,14 @@
-import Footer from "components/Footer";
 import Pages from "pages/Pages";
 import { HashRouter } from "react-router-dom";
-import Navbar from "components/Navbar";
+import Layout from "components/Layout";
 
 function App() {
   return (
     <div className="App">
       <HashRouter>
-        <Navbar />
-        <Pages />
-        <Footer />
+        <Layout>
+          <Pages />
+        </Layout>
       </HashRouter>
     </div>
   );
