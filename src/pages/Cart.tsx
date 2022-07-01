@@ -1,5 +1,5 @@
 import { Card, Button, Box } from "@mui/material";
-import { paymentAxios } from "api";
+import { paymentAxios, productsAxios } from "api";
 import CartItem from "components/CartItem";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "state/hooks";
@@ -15,8 +15,12 @@ function Cart() {
     e.preventDefault()
     try {
 
-      const payload = { ...user, items: [...cart.items], currency: "USD", total: cart.totalAmount }
-      await paymentAxios.post('/', payload, {})
+      const payload = { ...user.profile, items: [...cart.items], currency: "USD", total: cart.totalAmount }
+      console.log(payload);
+      
+      const response = await productsAxios.post('/api/v1/orders', payload, {})
+      console.log(response.data);
+      
     } catch (err: any) {
       console.log(err.response);
 
